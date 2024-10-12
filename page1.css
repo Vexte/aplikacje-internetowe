@@ -2,18 +2,27 @@ body
 {
 	font-family: sans-serif;
 	background-color: teal;
+	background-image: url("page1-background.png");
 	color: black;
 	margin: 0;
 	padding: 0;
 }
 
-header {
+header
+{
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
 	background: linear-gradient(90deg, rgba(1,0,129,1) 0%, rgba(8,39,245,1) 100%);
 	padding: 1px 0 0 0;
 	border-bottom: 2px solid lightgray;
+}
+
+.main-content
+{
+	display: flex;
+	flex-wrap: wrap;
+	
 }
 
 .image-container
@@ -57,6 +66,7 @@ header {
 
 footer
 {
+	margin-top: 20px;
 	background-color: darkgray;
 	padding: 10px;
 	border-top: 2px solid lightgray;
@@ -77,8 +87,10 @@ footer p
 
 section
 {
+	gap: 40px;
 	margin: 20px auto;
 	padding: 0px;
+	padding-bottom: 10px;
 
 	background-color: darkgray;
 	border-style: solid;
@@ -86,7 +98,7 @@ section
 	border-color: lightgray black black lightgray;
 
 	max-width: 95%;
-	width: 1000px;
+	width: 800px;
 	
 }
 
@@ -138,11 +150,13 @@ h3
 	border-color: lightgray black black lightgray;
 }
 
-nav {
+nav
+{
 	align-self: flex-end;
 }
 
-nav ul {
+nav ul
+{
 	display: flex;
 	align-content: flex-start;
 	list-style: none;
@@ -150,7 +164,8 @@ nav ul {
 	margin: 7px;
 }
 
-.nav-elem {
+.nav-elem
+{
 	background-color: darkgray;
 	border-style: solid;
 	border-width: 2px;
@@ -163,7 +178,8 @@ nav ul {
 	font-size: 15pt;
 }
 
-.nav-elem:hover {
+.nav-elem:hover
+{
 	color: black;
 }
 
@@ -184,7 +200,8 @@ nav ul {
 	
 }
 
-.button:active {
+.button:active
+{
 	background-color:gray;
 	border-color: black lightgray lightgray black;
 }
@@ -194,12 +211,18 @@ nav ul {
 	text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px)
+{
     header
     {
         flex-direction: column;
         align-items: center;
     }
+
+	.main-content
+	{
+		display: inline;
+	}
 
 	h1
 	{
@@ -214,6 +237,7 @@ nav ul {
     section
     {
         width: 90%;
+		margin: 20px auto;
     }
 
     nav ul
