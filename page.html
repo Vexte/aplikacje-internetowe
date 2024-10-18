@@ -5,38 +5,36 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>TODO List</title>
 	<link rel="stylesheet" href="page.css">
+    <script src="todo.js" defer></script>
 </head>
 <body>
     <section>
         <h2>ToDo List</h2>
-        <div class="todo-widget">
-            <div class="todo-search-bar">
-                <input placeholder="Search"></input>
+        <div id="my-todo" class="todo-widget">
+            <div id="search-bar" class="todo-search-bar">
+                <input placeholder="Search" class="todo-search-input"></input>
             </div>
-            <div class="todo-list">
+            <div id="list" class="todo-list">
                 <div class="todo-task">
-                    <input type="checkbox"></input>
                     <span class="todo-task-name">Task1</span>
-                    <input type="datetime-local" class="todo-datetime"></input>
-                    <button class="todo-delete-button">Delete</button>
+                    <input type="datetime-local" class="todo-task-datetime"></input>
+                    <button class="todo-task-delete-button">Delete</button>
                 </div>
                 <div class="todo-task">
-                    <input type="checkbox"></input>
                     <span class="todo-task-name">Task2</span>
-                    <input type="datetime-local" class="todo-datetime"></input>
-                    <button class="todo-delete-button">Delete</button>
+                    <input type="datetime-local" class="todo-task-datetime"></input>
+                    <button class="todo-task-delete-button">Delete</button>
                 </div>
                 <div class="todo-task">
-                    <input type="checkbox"></input>
                     <span class="todo-task-name">Task3</span>
-                    <input type="datetime-local" class="todo-datetime"></input>
-                    <button class="todo-delete-button">Delete</button>
+                    <input type="datetime-local" class="todo-task-datetime"></input>
+                    <button class="todo-task-delete-button">Delete</button>
                 </div>
             </div>
-            <div class="todo-new-task">
-                <input placeholder="Task Name"></input>
-                <input type="datetime-local" class="todo-datetime"></input>
-                <button class="todo-create-button">Add</button>
+            <div id="new-task" class="todo-new-task">
+                <input placeholder="Task Name" class="todo-task-name-input"></input>
+                <input type="datetime-local" class="todo-task-datetime"></input>
+                <button class="todo-add-button">Add</button>
             </div>
         </div>
     </section>

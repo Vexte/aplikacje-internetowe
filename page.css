@@ -40,7 +40,13 @@ section
 {
 	margin: 5px;
 }
-.nav-elem:hover
+
+.todo-list
 {
-	color: black;
+	
+}
+
+.todo-task
+{
+	display: flex;
 }
