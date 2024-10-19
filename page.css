@@ -43,10 +43,33 @@ section
 
 .todo-list
 {
-	
+	display: flex;
+	flex-direction: column;
+	max-height: 200px;
+	overflow-y: auto;
 }
 
-.todo-task
+.todo-task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.todo-task-name {
+    flex-grow: 1;
+    padding-right: 20px;
+}
+
+.todo-task-datetime {
+    width: 190px;
+}
+
+.todo-task-delete-button {
+    margin-left: 20px; /* Optional: Add spacing between the datetime input and delete button */
+}
+.search-highlight
 {
-	display: flex;
+	background-color: yellow;
 }

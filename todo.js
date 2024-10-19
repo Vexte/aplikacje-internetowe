@@ -38,6 +38,32 @@ class todo_widget
             html_task_name_input.value = "";
             html_task_datetime.value = "";
         });
+
+        let html_search_input = document.getElementById(this.search_bar_id).getElementsByTagName("input")[0];
+        html_search_input.addEventListener("input", (event) => {
+
+            for (let elem of document.getElementById(this.list_id).children)
+            {
+                let search_term = event.target.value;
+                let html_task_name = elem.getElementsByClassName("todo-task-name")[0];
+                let task_name = html_task_name.textContent;
+                
+                let match_index = task_name.indexOf(search_term);
+                if (match_index === -1)
+                {
+                    elem.style.display = "none";
+                    continue;
+                }
+                
+                elem.style.display = "flex";
+                
+                let before_match = task_name.slice(0, match_index);
+                let match = task_name.slice(match_index, match_index + search_term.length);
+                let after_match = task_name.slice(match_index + search_term.length);
+
+                html_task_name.innerHTML = `${before_match}<span class="search-highlight">${match}</span>${after_match}`
+            }
+        });
     }
 
     storage_save()
@@ -98,6 +124,15 @@ class todo_widget
             let  html_task_name = document.createElement("span");
             html_task_name.className = "todo-task-name";
             html_task_name.textContent = task.name;
+            html_task_name.addEventListener("click", (event) => {
+                html_task_name.contentEditable = "true";
+                html_task_name.focus();
+            });
+            html_task_name.addEventListener("blur", (event) => {
+                html_task_name.contentEditable = "false";
+
+                this.tasks[index].name = html_task_name.textContent;
+            });
             html_task.appendChild(html_task_name);
 
             let html_task_datetime = document.createElement("input");
