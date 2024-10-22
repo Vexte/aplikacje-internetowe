@@ -45,11 +45,12 @@ section
 {
 	display: flex;
 	flex-direction: column;
-	max-height: 200px;
+	height: 190px;
 	overflow-y: auto;
 }
 
-.todo-task {
+.todo-task
+{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -57,18 +58,27 @@ section
     padding: 5px;
 }
 
-.todo-task-name {
+.todo-task-name
+{
     flex-grow: 1;
     padding-right: 20px;
 }
 
-.todo-task-datetime {
+.todo-task-datetime
+{
     width: 190px;
 }
 
-.todo-task-delete-button {
+.todo-task-delete-button
+{
     margin-left: 20px; /* Optional: Add spacing between the datetime input and delete button */
 }
+
+.todo-no-matches
+{
+	margin: auto;
+}
+
 .search-highlight
 {
 	background-color: yellow;

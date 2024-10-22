@@ -10,6 +10,7 @@ class todo_widget
 		this.add_task_id = html_widget.getElementsByClassName("todo-new-task")[0].id;
 		this.tasks = []
 		this.storage_name = "todo-tasks-data";
+		this.search_term = ""
 
 		this.storage_load();
 		this.update_html();
@@ -41,28 +42,8 @@ class todo_widget
 
 		let html_search_input = document.getElementById(this.search_bar_id).getElementsByTagName("input")[0];
 		html_search_input.addEventListener("input", (event) => {
-
-			for (let elem of document.getElementById(this.list_id).children)
-			{
-				let search_term = event.target.value;
-				let html_task_name = elem.getElementsByClassName("todo-task-name")[0];
-				let task_name = html_task_name.textContent;
-				
-				let match_index = task_name.indexOf(search_term);
-				if (match_index === -1)
-				{
-					elem.style.display = "none";
-					continue;
-				}
-				
-				elem.style.display = "flex";
-				
-				let before_match = task_name.slice(0, match_index);
-				let match = task_name.slice(match_index, match_index + search_term.length);
-				let after_match = task_name.slice(match_index + search_term.length);
-
-				html_task_name.innerHTML = `${before_match}<span class="search-highlight">${match}</span>${after_match}`
-			}
+			this.search_term = event.target.value;
+			this.update_html();
 		});
 	}
 
@@ -117,17 +98,40 @@ class todo_widget
 
 		for (const [index, task] of this.tasks.entries())
 		{
+			let match_index = task.name.indexOf(this.search_term);
+			if (this.search_term.length >= 2 )
+			{
+				if (match_index === -1)
+				{
+					continue;
+				}
+			}
+
 			let html_task = document.createElement("div");
 			html_task.className = "todo-task";
 			html_task.id = this.list_id + "-item-" + index.toString();
 
 			let  html_task_name = document.createElement("span");
 			html_task_name.className = "todo-task-name";
-			html_task_name.textContent = task.name;
+
+			if (match_index === -1)
+			{
+				html_task_name.textContent = task.name
+			}
+			else
+			{
+				let before_match = task.name.slice(0, match_index);
+				let match = task.name.slice(match_index, match_index + this.search_term.length);
+				let after_match = task.name.slice(match_index + this.search_term.length);
+				html_task_name.innerHTML = `${before_match}<span class="search-highlight">${match}</span>${after_match}`
+			}
+
+			
 			html_task_name.addEventListener("click", (event) => {
 				html_task_name.contentEditable = "true";
 				html_task_name.focus();
 			});
+
 			html_task_name.addEventListener("blur", (event) => {
 				html_task_name.contentEditable = "false";
 
@@ -175,6 +179,14 @@ class todo_widget
 			html_task.appendChild(html_task_delete_button);
 
 			html_todo_list.appendChild(html_task);
+		}
+
+		if (html_todo_list.children.length === 0)
+		{
+			let html_no_matches = document.createElement("span");
+			html_no_matches.className = "todo-no-matches"
+			html_no_matches.textContent = "No tasks match the search criteria";
+			html_todo_list.appendChild(html_no_matches);
 		}
 	}
 }
