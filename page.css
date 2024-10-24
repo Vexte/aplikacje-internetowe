@@ -1,0 +1,39 @@
+
+body
+{
+}
+
+section
+{
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+#map
+{
+    height: 200px;
+}
+
+#interactive-map-container
+{
+}
+
+#downloaded-map-container
+{
+    
+}
+
+#scrambled-map-container
+{
+}
+
+#drop-container
+{
+}
+
+.tile
+{
+    width: 25%;
+    border: 5px solid;
+}
