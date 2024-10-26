@@ -29,9 +29,9 @@ class todo_widget
 				alert("Task name must be at least 3 letters long and at most 255 letters long");
 				return;
 			}
-			if (task_date === "")
+			if (new Date(task_date) <= new Date())
 			{
-				alert("No task date provided");
+				alert("Task date must be in the future");
 				return;
 			}
 
@@ -166,6 +166,14 @@ class todo_widget
 			html_task_datetime.type = "datetime-local"
 			html_task_datetime.value = task.datetime;
 			html_task_datetime.addEventListener("change", (event) => {
+				let new_task_date = event.target.value;
+				if (new Date(new_task_date) <= new Date())
+				{
+					alert("Task date must be in the future");
+					event.target.value = task.datetime;
+					return;
+				}
+
 				this.update_task(index, null, null, event.target.value);
 			});
 			html_task.appendChild(html_task_datetime);
