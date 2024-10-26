@@ -1,31 +1,29 @@
 body
 {
 	font-family: sans-serif;
-	background-color: teal;
-	background-image: url("page-background.png");
-	color: black;
+	background-color: #151515;
+	color: white;
 	margin: 0;
 	padding: 0;
 }
 
 h2
 {
-	margin: 2px;
+	margin: 0px 0px 20px 0px;
 	padding: 5px;
-	background: linear-gradient(90deg, rgba(1,0,129,1) 0%, rgba(8,39,245,1) 100%);
-	color: white;
-	text-align: left;
-	font-family: Verdana;
+	background: #87CF3E;
+	color: rgb(255, 255, 255);
+	text-align: center;
+	border-radius: 15px 15px 0px 0px;
+	border-bottom: solid 5px #67a02e;
 }
 
 section
 {
-	padding: 0px;
+	padding: 0px 0px 10px 0px;
 
-	background-color: darkgray;
-	border-style: solid;
-	border-width: 2px;
-	border-color: lightgray black black lightgray;
+	background-color: #2E2E2E;
+	border-radius: 20px;
 
 	max-width: 95%;
 	width: 800px;
@@ -38,7 +36,7 @@ section
 
 .todo-widget
 {
-	margin: 5px;
+	margin: 0px 10px;
 }
 
 .todo-list
@@ -46,7 +44,19 @@ section
 	display: flex;
 	flex-direction: column;
 	height: 190px;
-	overflow-y: auto;
+	overflow-y: scroll;
+	scrollbar-color: #222222 #0000;
+
+	margin: 20px 0px;
+}
+
+.todo-list::-webkit-scrollbar {
+    display: none;
+}
+
+.todo-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .todo-task
@@ -55,23 +65,38 @@ section
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: 5px 10px;
+	background-color: #222222;
+	border-radius: 5px;
+	margin: 2px 0px;
+	gap: 5px;
 }
 
 .todo-task-name
 {
     flex-grow: 1;
-    padding-right: 20px;
-}
-
-.todo-task-datetime
-{
-    width: 190px;
+	border-radius: 10px;
+	padding: 5px;
 }
 
 .todo-task-delete-button
 {
-    margin-left: 20px; /* Optional: Add spacing between the datetime input and delete button */
+	width: 25px;
+	height: 25px;
+    margin-left: 20px;
+	background-color: transparent;
+	
+	border: none;
+}
+
+.todo-task-delete-button:hover
+{
+	cursor: pointer;
+}
+
+.todo-task-delete-button .material-icons
+{
+	color: red;
 }
 
 .todo-no-matches
@@ -81,5 +106,102 @@ section
 
 .search-highlight
 {
-	background-color: yellow;
+	background-color: darkblue;
+}
+
+.todo-search-bar
+{
+	height: 30px;
+	display: flex;
+	background-color: #222222;
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #222222;
+}
+
+.todo-search-bar .material-icons
+{
+	border-radius: 5px 0px 0px 5px;
+	margin: 4px;
+}
+
+.todo-search-input
+{
+	margin: 0px;
+	width: 100%;
+	border-radius: 0px 10px 10px 0px;
+	border-style: none;
+	background-color: #222222;
+	color: white;
+}
+
+.todo-search-input::placeholder
+{
+	color: white;
+}
+
+.todo-checkbox
+{
+	accent-color: #87CF3E;
+	background-color: red;
+}
+
+.todo-task-name-input
+{
+	border-radius: 10px;
+	padding: 5px;
+	background-color: #222222;
+	border-style: none;
+	color: white;
+	flex: 1;
+}
+
+.todo-task-name-input::placeholder
+{
+	color: white;
+}
+
+.todo-add-button
+{
+	border-radius: 10px;
+	padding: 8px 10px;
+	background-color: #87CF3E;
+	border-style: none;
+	color: white;
+	font-weight: bolder;
+}
+
+.todo-add-button:hover
+{
+	cursor: pointer;
+}
+
+.todo-task-datetime
+{
+    width: 190px;
+	border-radius: 10px;
+	padding: 5px;
+	border-style: none;
+	background-color: #222222;
+	color: white;
+}
+
+.todo-new-task
+{
+	display: flex;
+	gap: 10px
+}
+
+:focus
+{
+	border-color: #66afe9;
+	outline: 0;
+	box-shadow: inset 0 1px 1px #00000013, 0 0 8px #66afe999;
+}
+
+button:focus
+{
+	border-color: transparent;
+	box-shadow: none;
 }

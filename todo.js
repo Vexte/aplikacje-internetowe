@@ -5,7 +5,7 @@ class todo_widget
 		this.widget_id = widget_id
 		let html_widget = document.getElementById(widget_id);
 		
-		this.search_bar_id = html_widget.getElementsByClassName("todo-search-bar")[0].id;
+		this.search_input_id = html_widget.getElementsByClassName("todo-search-input")[0].id;
 		this.list_id = html_widget.getElementsByClassName("todo-list")[0].id;
 		this.add_task_id = html_widget.getElementsByClassName("todo-new-task")[0].id;
 		this.tasks = []
@@ -35,12 +35,12 @@ class todo_widget
 				return;
 			}
 
-			this.add_task(task_name, task_date);
+			this.add_task(false, task_name, task_date);
 			html_task_name_input.value = "";
 			html_task_datetime.value = "";
 		});
 
-		let html_search_input = document.getElementById(this.search_bar_id).getElementsByTagName("input")[0];
+		let html_search_input = document.getElementById(this.search_input_id);
 		html_search_input.addEventListener("input", (event) => {
 			this.search_term = event.target.value;
 			this.update_html();
@@ -58,9 +58,9 @@ class todo_widget
 		this.tasks = storage_data ? JSON.parse(storage_data) : [];
 	}
 
-	add_task(name, datetime)
+	add_task(completed, name, datetime)
 	{
-		this.tasks.push({name: name, datetime: datetime});
+		this.tasks.push({completed: completed, name: name, datetime: datetime});
 		this.storage_save();
 
 		this.update_html();
@@ -74,8 +74,13 @@ class todo_widget
 		this.update_html();
 	}
 
-	update_task(index, name, datetime)
+	update_task(index, completed, name, datetime)
 	{
+		if (completed != null)
+		{
+			this.tasks[index].completed = completed;
+		}
+
 		if (name != null)
 		{
 			this.tasks[index].name = name
@@ -111,7 +116,16 @@ class todo_widget
 			html_task.className = "todo-task";
 			html_task.id = this.list_id + "-item-" + index.toString();
 
-			let  html_task_name = document.createElement("span");
+			let html_checkbox = document.createElement("input");
+			html_checkbox.type = "checkbox";
+			html_checkbox.className = "todo-checkbox";
+			html_checkbox.checked = task.completed;
+			html_checkbox.addEventListener("change", (event) =>{
+				this.update_task(index, event.target.checked, null, null);
+			});
+			html_task.appendChild(html_checkbox);
+
+			let html_task_name = document.createElement("span");
 			html_task_name.className = "todo-task-name";
 
 			if (match_index === -1)
@@ -128,12 +142,12 @@ class todo_widget
 
 			
 			html_task_name.addEventListener("click", (event) => {
-				html_task_name.contentEditable = "true";
+				html_task_name.contentEditable = true;
 				html_task_name.focus();
 			});
 
 			html_task_name.addEventListener("blur", (event) => {
-				html_task_name.contentEditable = "false";
+				html_task_name.contentEditable = false;
 
 				let new_task_name = html_task_name.textContent;
 				if (new_task_name.length < 3 || 255 < new_task_name.length)
@@ -143,7 +157,7 @@ class todo_widget
 					return;
 				}
 
-				this.update_task(index, new_task_name, null);
+				this.update_task(index, null, new_task_name, null);
 			});
 			html_task.appendChild(html_task_name);
 
@@ -152,36 +166,22 @@ class todo_widget
 			html_task_datetime.type = "datetime-local"
 			html_task_datetime.value = task.datetime;
 			html_task_datetime.addEventListener("change", (event) => {
-				let html_task = event.target.closest(".todo-task");
-				let split_id = html_task.id.split("-");
-				let task_index = Number(split_id[split_id.length - 1]);
-	
-				if (event.target.className === "todo-task-datetime")
-				{
-					this.update_task(task_index, null, event.target.value);
-				}
+				this.update_task(index, null, null, event.target.value);
 			});
 			html_task.appendChild(html_task_datetime);
 			
 			let html_task_delete_button = document.createElement("button");
 			html_task_delete_button.className = "todo-task-delete-button";
-			html_task_delete_button.textContent = "Delete";
+			html_task_delete_button.innerHTML = "<span class='material-icons'>delete</span>"
 			html_task_delete_button.addEventListener("click", (event) => {
-				let html_task = event.target.closest(".todo-task");
-				let split_id = html_task.id.split("-");
-				let task_index = Number(split_id[split_id.length - 1]);
-	
-				if (event.target.className === "todo-task-delete-button")
-				{
-					this.remove_task(task_index);
-				}
+					this.remove_task(index);
 			});
 			html_task.appendChild(html_task_delete_button);
 
 			html_todo_list.appendChild(html_task);
 		}
 
-		if (html_todo_list.children.length === 0)
+		if (html_todo_list.children.length === 0 && this.search_term.length !== 0)
 		{
 			let html_no_matches = document.createElement("span");
 			html_no_matches.className = "todo-no-matches"
