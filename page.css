@@ -205,3 +205,11 @@ button:focus
 	border-color: transparent;
 	box-shadow: none;
 }
+
+.todo-task-no-datetime
+{
+	width: 190px;
+	color: white;
+	text-align: left;
+	padding: 5px;
+}
