@@ -19,7 +19,7 @@ class todo_widget
 		let html_add_button = html_add_task.getElementsByClassName("todo-add-button")[0];
 		html_add_button.addEventListener("click", () => {
 			let html_task_name_input = html_add_task.getElementsByClassName("todo-task-name-input")[0];
-			let html_task_datetime = html_add_task.getElementsByClassName("todo-task-datetime")[0];
+			let html_task_datetime = html_add_task.getElementsByClassName("todo-task-datetime-input")[0];
 	
 			let task_name = html_task_name_input.value;
 			let task_date = html_task_datetime.value;
@@ -161,43 +161,15 @@ class todo_widget
 			});
 			html_task.appendChild(html_task_name);
 
-			if (task.datetime === "")
-			{
-				let html_task_no_datetime = document.createElement("span");
-				html_task_no_datetime.className = "todo-task-no-datetime";
-				html_task_no_datetime.textContent = "";
-				html_task_no_datetime.addEventListener("click", (event) =>{
-					let html_datetime = document.createElement("input");
-					html_datetime.className = "todo-task-datetime";
-					html_datetime.type = "datetime-local"
-					html_datetime.addEventListener("change", (event) => {
-						let new_task_date = event.target.value;
-						if (new Date(new_task_date) <= new Date())
-						{
-							alert("Task date must be in the future");
-							event.target.value = task.datetime;
-							return;
-						}
-	
-						this.update_task(index, null, null, event.target.value);
-					});
-
-					html_datetime.addEventListener("blur", (event) =>{
-						this.update_html();
-					});
-					
-					event.target.replaceWith(html_datetime)
-					html_datetime.focus();
-				});
-				html_task.appendChild(html_task_no_datetime);
-			}
-			else
-			{
-				let html_task_datetime = document.createElement("input");
-				html_task_datetime.className = "todo-task-datetime";
-				html_task_datetime.type = "datetime-local"
-				html_task_datetime.value = task.datetime;
-				html_task_datetime.addEventListener("change", (event) => {
+			let html_task_datetime = document.createElement("span");
+			html_task_datetime.className = "todo-task-datetime";
+			html_task_datetime.textContent = task.datetime === "" ? "" : new Date(task.datetime).toLocaleString();
+			html_task_datetime.addEventListener("click", (event) => {
+				let html_datetime = document.createElement("input");
+				html_datetime.className = "todo-task-datetime-input";
+				html_datetime.value = task.datetime;
+				html_datetime.type = "datetime-local"
+				html_datetime.addEventListener("change", (event) => {
 					let new_task_date = event.target.value;
 					if (new Date(new_task_date) <= new Date())
 					{
@@ -208,10 +180,15 @@ class todo_widget
 
 					this.update_task(index, null, null, event.target.value);
 				});
-				html_task.appendChild(html_task_datetime);
-			}
 
-			
+				html_datetime.addEventListener("blur", (event) =>{
+					this.update_html();
+				});
+				
+				event.target.replaceWith(html_datetime)
+				html_datetime.focus();
+			});
+			html_task.appendChild(html_task_datetime);
 			
 			let html_task_delete_button = document.createElement("button");
 			html_task_delete_button.className = "todo-task-delete-button";

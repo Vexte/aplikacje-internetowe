@@ -177,7 +177,7 @@ section
 	cursor: pointer;
 }
 
-.todo-task-datetime
+.todo-task-datetime-input
 {
     width: 190px;
 	border-radius: 10px;
@@ -206,7 +206,7 @@ button:focus
 	box-shadow: none;
 }
 
-.todo-task-no-datetime
+.todo-task-datetime
 {
 	width: 190px;
 	color: white;
