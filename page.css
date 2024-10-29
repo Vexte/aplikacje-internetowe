@@ -74,7 +74,9 @@ section
 
 .todo-task-name
 {
-    flex-grow: 1;
+	width: 400px;
+	flex-grow: 1;
+	overflow: hidden;
 	border-radius: 10px;
 	padding: 5px;
 }
