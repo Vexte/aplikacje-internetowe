@@ -4,32 +4,32 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Puzzle</title>
-    
-    <link rel="stylesheet" href="/leaflet/leaflet.css" />
-    <script src="/leaflet/leaflet.js"></script>
 	
-    <link rel="stylesheet" href="page.css">
-    <script src="puzzle.js" defer></script>
-    <script src="map.js" defer></script>
+	<link rel="stylesheet" href="leaflet-1.7.1/leaflet.css" />
+	<script src="leaflet-1.7.1/leaflet-src.js"></script>
+	<script src="leaflet-1.7.1/leaflet-providers.js"></script>
+	<script src="leaflet-1.7.1/leaflet-image.js"></script>
+	
+	<link rel="stylesheet" href="page.css">
+	<script src="puzzle.js" defer></script>
 </head>
 <body>
-    <section>
-        <div class="tile" id="interactive-map-container">
-            <div id="map"></div>
-            <button id="location-button">Moja lokalizacja</button>
-            <button id="download-button">Pobierz mapę</button>
-        </div>
-    
-        <div class="tile" id="downloaded-map-container">
-            <canvas id="downloaded-map"></canvas>
-        </div>
-        
-        <div class="tile" id="scrambled-map-container">
-    
-        </div>
-        
-        <div class="tile" id="drop-container">
-    
-        </div>
-    </section>
+	<section>
+
+		<div id="map-container">
+			<div class="tile" id="interactive-map-tile">
+				<div id="map"></div>
+			</div>
+			<button id="location-button">Moja lokalizacja</button>
+			<button id="download-button">Pobierz mapę</button>
+		</div>
+		
+		<div class="tile" id="drop-area">
+	
+		</div>
+
+		<div class="tile" id="scrambled-map-tile">
+	
+		</div>
+	</section>
 </body>
