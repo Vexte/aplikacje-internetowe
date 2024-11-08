@@ -12,7 +12,7 @@ section
     padding: 5px;
     flex-wrap: wrap;
 
-    max-width: 1000px;
+    max-width: 1100px;
 }
 
 #map
@@ -31,6 +31,8 @@ section
     flex-wrap: wrap;
     flex-grow: 1;
     gap: 5px;
+    height: fit-content;
+    min-height: 400px;
     justify-content: center;
     align-items: center;
     padding: auto;
@@ -73,7 +75,7 @@ section
 {
     width: 400px;
     height: 400px;
-    border: 10px solid;
+    border: 5px solid;
     border-radius: 10px;
     border-color: #87CF3E;
     margin: 10px auto;

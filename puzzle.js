@@ -71,6 +71,7 @@ let correct_tiles = Array(tile_count_v * tile_count_h);
 
 let interactive_map_tile = document.getElementById("interactive-map-tile");
 let drop_area = document.getElementById("drop-area");
+let downloaded_map = document.getElementById("downloaded-map-tile");
 let drop_area_overlay = document.getElementById("drop-area-overlay");
 let puzzle_container = document.getElementById("scrambled-map-tile");
 
@@ -95,6 +96,7 @@ document.getElementById("download-button").addEventListener("click", () => {
 			0, 0, downloaded_map_canvas.width, downloaded_map_canvas.height
 		);
 
+		downloaded_map.replaceChildren();
 		puzzle_container.replaceChildren();
 		for (let i = 0; i < drop_area.childElementCount;)
 		{
@@ -118,6 +120,8 @@ document.getElementById("download-button").addEventListener("click", () => {
 
 		drop_area_overlay.style.pointerEvents = "none";
 		drop_area_overlay.style.display = "none";
+
+		downloaded_map.appendChild(downloaded_map_canvas);
 
 		let tiles = canvas_to_tiles(downloaded_map_canvas, tile_count_v, tile_count_h);
 		shuffle_array(tiles);
