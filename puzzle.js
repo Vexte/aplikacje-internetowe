@@ -40,6 +40,11 @@ function is_solved(container)
 {
 	for (const tile_slot of container.children)
 	{
+		if (tile_slot.className !== "map-tile-slot")
+		{
+			continue;
+		}
+
 		if (tile_slot.childElementCount === 0)
 		{
 			return false;
@@ -59,19 +64,23 @@ function is_solved(container)
 	return true;
 }
 
-let tile_count_v = 2;
-let tile_count_h = 2;
+let tile_count_v = 4;
+let tile_count_h = 4;
 
 let correct_tiles = Array(tile_count_v * tile_count_h);
 
 let interactive_map_tile = document.getElementById("interactive-map-tile");
 let drop_area = document.getElementById("drop-area");
+let drop_area_overlay = document.getElementById("drop-area-overlay");
 let puzzle_container = document.getElementById("scrambled-map-tile");
 
 let map = L.map("map", {preferCanvas: true}).setView([0.0, 0.0], 1);
 
 L.tileLayer.provider("Esri.WorldStreetMap").addTo(map);
 L.tileLayer.renderer = L.canvas();
+
+drop_area_overlay.style.pointerEvents = "none";
+drop_area_overlay.style.display = "none";
 
 document.getElementById("download-button").addEventListener("click", () => {
 	leafletImage(map, (err, canvas) => {
@@ -87,7 +96,28 @@ document.getElementById("download-button").addEventListener("click", () => {
 		);
 
 		puzzle_container.replaceChildren();
-		drop_area.replaceChildren();
+		for (let i = 0; i < drop_area.childElementCount;)
+		{
+			const child = drop_area.children[i];
+			if (child.className === "map-tile-slot")
+			{
+				drop_area.removeChild(child);
+				continue;
+			}
+
+			i++
+		}
+
+		for (const child of drop_area.children)
+		{
+			if (child.className === "map-tile-slot")
+			{
+				drop_area.removeChild(child);
+			}
+		}
+
+		drop_area_overlay.style.pointerEvents = "none";
+		drop_area_overlay.style.display = "none";
 
 		let tiles = canvas_to_tiles(downloaded_map_canvas, tile_count_v, tile_count_h);
 		shuffle_array(tiles);
@@ -148,6 +178,9 @@ document.getElementById("download-button").addEventListener("click", () => {
 				else
 				{
 					console.log("Solved");
+
+					drop_area_overlay.style.pointerEvents = "";
+					drop_area_overlay.style.display = "";
 
 					if (Notification.permission === "default")
 					{

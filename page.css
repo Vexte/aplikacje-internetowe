@@ -1,12 +1,15 @@
 
 body
 {
+    background-color: rgb(50, 50, 50);
+    margin: 0;
 }
 
 section
 {
     display: flex;
     margin: auto;
+    padding: 5px;
     flex-wrap: wrap;
 
     max-width: 1000px;
@@ -27,12 +30,32 @@ section
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    background-color: rgb(30, 30, 30);
+}
+
+#drop-area-overlay
+{
+    background-color: rgba(128, 128, 128, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 2em;
 }
 
 #drop-area
 {
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    background-color: rgb(30, 30, 30);
 }
 
 #downloaded-map
@@ -50,7 +73,9 @@ section
 {
     width: 400px;
     height: 400px;
-    border: 5px solid;
+    border: 10px solid;
+    border-radius: 10px;
+    border-color: #87CF3E;
     margin: 10px auto;
 }
 
