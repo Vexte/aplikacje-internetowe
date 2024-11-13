@@ -12,8 +12,9 @@
 <body>
     <section>
         <input id="address-input" type="text" placeholder="City, Country code">
-        <button id="weather-button">Pogoda</button>
+        <button id="weather-button">Search</button>
 
+        <h2>Location: <span id="location-name">---</span></h2>
         <h3>Current Weather</h2>
         <div class="weather-tile" id="current-weather">
             <div class="weather-desc-elem">
@@ -21,6 +22,7 @@
                 <span>---</span>
             </div>
             <div class="weather-data-elem">
+                <time>---</time>
                 <div class="weather-temp">
                     <span>Temperature: ---</span>
                     <span>Feels like: ---</span>
@@ -34,9 +36,8 @@
             </div>
         </div>
 
-        <h3>5 day Forecast</h3>
+        <h3>Forecast</h3>
         <div class="forecast-list" id="forecast-list">
-            <div class="forecast-list-elem"></div>
         </div>
     </section>
 </body>

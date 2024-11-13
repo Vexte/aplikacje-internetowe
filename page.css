@@ -1,6 +1,13 @@
+section
+{
+    margin: auto;
+    max-width: 1000px;
+}
+
 .weather-tile
 {
-    width: 450px;
+    margin: auto;
+    width: 80%;
     height: 100px;
     padding: 20px;
     background-color: gray;
@@ -8,6 +15,7 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
+    justify-items: center;
     gap: 80px;
     
 }
@@ -17,10 +25,28 @@
     display: flex;
     justify-items: left;
     align-items: center;
+    flex-grow: 1;
+}
+
+.weather-data-elem
+{
+    width: 300px;
 }
 
 .weather-temp
 {
     display: flex;
     gap: 30px;
+}
+
+.forecast-list
+{
+    margin: auto;
+    width: 90%;
+    max-width: 900px;
+    max-height: 500px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
 }
