@@ -1,0 +1,26 @@
+.weather-tile
+{
+    width: 450px;
+    height: 100px;
+    padding: 20px;
+    background-color: gray;
+    border: 5px solid red;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    
+}
+
+.weather-desc-elem
+{
+    display: flex;
+    justify-items: left;
+    align-items: center;
+}
+
+.weather-temp
+{
+    display: flex;
+    gap: 30px;
+}
