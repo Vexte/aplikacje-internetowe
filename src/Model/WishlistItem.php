@@ -9,6 +9,7 @@ class WishlistItem
 	private ?string $game_title = null;
 	private ?string $release_date = null;
 	private ?string $description = null;
+	private ?string $store_link = null;
 
 	public function getId(): ?int
 	{
@@ -58,6 +59,18 @@ class WishlistItem
 		return $this;
 	}
 
+	public function getStoreLink(): ?string
+	{
+		return $this->store_link;
+	}
+
+	public function setStoreLink(?string $store_link): WishlistItem
+	{
+		$this->store_link = $store_link;
+
+		return $this;
+	}
+
 	public static function fromArray($array): WishlistItem
 	{
 		$wishlist_item = new self();
@@ -83,6 +96,10 @@ class WishlistItem
 		if (isset($array['description']))
 		{
 			$this->setDescription($array['description']);
+		}
+		if (isset($array['store_link']))
+		{
+			$this->setStoreLink($array['store_link']);
 		}
 
 		return $this;
@@ -124,23 +141,25 @@ class WishlistItem
 	{
 		$pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
 		if (! $this->getId()) {
-			$sql = "INSERT INTO `wishlist` (game_title, release_date, description) VALUES (:game_title, :release_date, :description)";
+			$sql = "INSERT INTO `wishlist` (game_title, release_date, description, store_link) VALUES (:game_title, :release_date, :description, :store_link)";
 			$statement = $pdo->prepare($sql);
 			$statement->execute([
 				'game_title' => $this->getGameTitle(),
 				'release_date' => $this->getReleaseDate(),
-				'description' => $this->getDescription()
+				'description' => $this->getDescription(),
+				'store_link' => $this->getStoreLink()
 			]);
 
 			$this->setId($pdo->lastInsertId());
 		} else {
-			$sql = "UPDATE wishlist SET game_title = :game_title, release_date = :release_date, description = :description WHERE id = :id";
+			$sql = "UPDATE wishlist SET game_title = :game_title, release_date = :release_date, description = :description, store_link = :store_link WHERE id = :id";
 			$statement = $pdo->prepare($sql);
 			$statement->execute([
 				':release_date' => $this->getGameTitle(),
 				':release_date' => $this->getReleaseDate(),
 				':description' => $this->getDescription(),
-				':id' => $this->getId(),
+				':store_link' => $this->getStoreLink(),
+				':id' => $this->getId()
 			]);
 		}
 	}
@@ -158,5 +177,6 @@ class WishlistItem
 		$this->setGameTitle(null);
 		$this->setReleaseDate(null);
 		$this->setDescription(null);
+		$this->setStoreLink(null);
 	}
 }

@@ -8,6 +8,11 @@
 </div>
 
 <div class="form-group">
+    <label for="store_link">Store Link</label>
+    <input type="text" id="store_link" name="wishlist_item[store_link]" value="<?= $wishlist_item ? $wishlist_item->getStoreLink() : '' ?>">
+</div>
+
+<div class="form-group">
     <label for="release_date">Release Date</label>
     <input type="date" id="release_date" name="wishlist_item[release_date]" value="<?= $wishlist_item ? $wishlist_item->getReleaseDate() : '' ?>">
 </div>

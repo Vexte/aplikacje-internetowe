@@ -8,6 +8,7 @@ $bodyClass = 'show';
 
 ob_start(); ?>
     <h1><?= $wishlist_item->getGameTitle() ?></h1>
+    <a href='<?= $wishlist_item->getStoreLink() ?>'>Go to the store page</a> <br><br>
     <span>Release date: <time><?= $wishlist_item->getReleaseDate() ? $wishlist_item->getReleaseDate() : "Unknown" ?></time></span>
     <article>
         <?= $wishlist_item->getDescription();?>
