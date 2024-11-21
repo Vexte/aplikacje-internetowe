@@ -5,6 +5,13 @@ const address_input = document.getElementById("address-input");
 const forecast_list = document.getElementById("forecast-list");
 const location_name = document.getElementById("location-name");
 
+address_input.addEventListener("keypress", (event) => {
+	if (event.key === "Enter") {
+	  event.preventDefault();
+	  weather_button.click();
+	}
+});
+
 function make_weather_tile(id, time, icon_src, description, temperature, feels_like, pressure, humidity)
 {
 	const weather_tile = document.createElement("div");

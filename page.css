@@ -1,3 +1,9 @@
+body
+{
+    background-color: rgb(30, 30, 40);
+    color: whitesmoke;
+}
+
 section
 {
     margin: auto;
@@ -10,9 +16,8 @@ section
     width: 80%;
     height: 100px;
     padding: 20px;
-    background-color: gray;
-    border: 5px solid red;
-    border-radius: 10px;
+    background-color: rgb(60, 60, 60);
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-items: center;
@@ -25,12 +30,12 @@ section
     display: flex;
     justify-items: left;
     align-items: center;
-    flex-grow: 1;
+    width: 200px;
 }
 
 .weather-data-elem
 {
-    width: 300px;
+    flex-grow: 1;
 }
 
 .weather-temp
@@ -39,14 +44,90 @@ section
     gap: 30px;
 }
 
+.search-bar
+{
+    display: flex;
+    gap: 10px;
+}
+
+#address-input
+{
+    flex-grow: 1;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 3px rgb(60, 60, 60);
+    color: whitesmoke;
+}
+
+#weather-button
+{
+    background-color: rgb(60, 60, 60);
+    color: whitesmoke;
+    border: none;
+    border-radius: 10px;
+}
+
+#current-weather-container
+{
+    margin: auto;
+    margin-bottom: 50px;
+    width: 80%;
+    background-color: rgb(60, 60, 60);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#current-weather-container h3
+{
+    margin: auto;
+}
+
+#current-weather-container .weather-tile
+{
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+
 .forecast-list
 {
     margin: auto;
-    width: 90%;
     max-width: 900px;
-    max-height: 500px;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll;
+    background-color: rgb(60, 60, 60);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    gap: 10px;
+    max-height: 410px;
+}
+
+.forecast-list::-webkit-scrollbar
+{
+    display: none;
+}
+
+#forecast-list-container
+{
+    margin: auto;
+    margin-bottom: 50px;
+    width: 80%;
+    background-color: rgb(60, 60, 60);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#forecast-list-container h3
+{
+    margin: auto;
+}
+
+#forecast-list-container .weather-tile
+{
+    margin: 0;
+    width: 100%;
+    padding: 0;
 }
